@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 199 89% 48%;
+    --radius: 0.5rem;
+
+    /* Custom colors */
+    --orange: 32 100% 50%;
+    --orange-foreground: 210 40% 98%;
+
+    /* Chart colors */
+    --chart-1: 199 89% 48%;
+    --chart-2: 32 100% 50%;
+    --chart-3: 222.2 47.4% 11.2%;
+    --chart-4: 262.1 83.3% 57.8%;
+    --chart-5: 316.6 73.3% 52.5%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 199 89% 48%;
+
+    /* Custom colors */
+    --orange: 32 100% 50%;
+    --orange-foreground: 222.2 47.4% 11.2%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.prose {
+  @apply max-w-none;
+}
+
+.prose a {
+  @apply text-primary hover:text-primary/80 transition-colors no-underline;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-bold text-foreground scroll-m-20;
+}
+
+.prose h1 {
+  @apply text-4xl mt-8 mb-4;
+}
+
+.prose h2 {
+  @apply text-3xl mt-8 mb-4;
+}
+
+.prose h3 {
+  @apply text-2xl mt-6 mb-3;
+}
+
+.prose h4 {
+  @apply text-xl mt-6 mb-3;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  @apply mb-4 leading-7;
+}
+
+.prose ul,
+.prose ol {
+  @apply pl-6;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary/20 pl-4 italic;
+}
+
+.prose code {
+  @apply bg-muted px-1 py-0.5 rounded text-sm font-mono;
+}
+
+.prose pre {
+  @apply bg-muted p-4 rounded-md overflow-x-auto;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-sm;
+}
+
+.prose img {
+  @apply rounded-md;
+}
+
+.prose hr {
+  @apply my-8 border-muted;
+}
+
+/* Custom classes for blog content */
+.prose .image-container {
+  @apply my-8 rounded-lg overflow-hidden;
+}
+
+.prose .image-container img {
+  @apply w-full h-auto rounded-t-lg;
+}
+
+.prose .image-container figcaption,
+.prose .video-container .caption {
+  @apply text-center text-sm text-muted-foreground py-2 px-4 bg-muted/50 rounded-b-lg;
+}
+
+.prose .video-container {
+  @apply my-8 rounded-lg overflow-hidden;
+}
+
+.prose .video-container iframe {
+  @apply w-full aspect-video rounded-t-lg;
+}
