@@ -117,7 +117,7 @@ export default function ContactPage() {
           </CardHeader>
           <CardContent className="flex gap-4">
             <a
-              href="https://twitter.com"
+              href="https://x.com/RwigaraRodrigue"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80"
@@ -133,7 +133,7 @@ export default function ContactPage() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/rodriguecyber  "
+              href="https://github.com/rodriguecyber/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80"
@@ -217,8 +217,8 @@ export default function ContactPage() {
           <CardContent>
             <div className="aspect-video rounded-md overflow-hidden border">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30591910525!2d-74.25986432970718!3d40.697149422113014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1648482801994!5m2!1sen!2s"
-                width="100%"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d166480.47691783!2d29.962077506478256!3d-1.9294194006035335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali!5e1!3m2!1sen!2srw!4v1746295165937!5m2!1sen!2srw"
+                  width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
