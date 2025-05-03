@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast"
 import DashboardSidebar from "@/components/dashboard/dashboard-sidebar"
 import DashboardHeader from "@/components/dashboard/dashboard-header"
 import { Loader2 } from "lucide-react"
+import axios from "axios"
 
 export default function DashboardLayout({
   children,
@@ -24,15 +25,12 @@ export default function DashboardLayout({
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
-          credentials: "include",
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
+          withCredentials:true,
+
         })
 
-        if (!res.ok) {
-          throw new Error("Not authenticated")
-        }
-
-        const data = await res.json()
+        const {data }=  res
         setUser(data.data)
         setLoading(false)
       } catch (error) {
