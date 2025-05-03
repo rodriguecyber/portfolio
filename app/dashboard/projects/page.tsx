@@ -48,7 +48,7 @@ export default function ProjectsPage() {
   const fetchProjects = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
-        withCredentials:true,
+        
           headers:{
             "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
           }
@@ -84,7 +84,7 @@ export default function ProjectsPage() {
 
     try {
       const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectToDelete}`, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -118,7 +118,7 @@ export default function ProjectsPage() {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectToPublish._id}`,{
           published: !projectToPublish.published,
         }, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }

@@ -41,7 +41,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
     const fetchBlog = async () => {
       try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${params.id}`, {
-          withCredentials:true,
+          
           headers:{
             "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
           }
@@ -107,7 +107,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -166,7 +166,6 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
 
     try {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${params.id}`, formData, {
-        withCredentials:true,
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }

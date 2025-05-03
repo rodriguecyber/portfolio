@@ -35,7 +35,7 @@ export default function LoginPage() {
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,JSON.stringify(formData), {
         method: "POST",
-        withCredentials:true,
+        
         headers: {
           "Content-Type": "application/json",
         }

@@ -47,7 +47,6 @@ export default function SubscribersPage() {
   const fetchSubscribers = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers`, {
-        withCredentials:true,
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -82,7 +81,6 @@ export default function SubscribersPage() {
 
     try {
       const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/id/${subscriberToDelete}`, {
-        withCredentials:true,
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -120,7 +118,6 @@ export default function SubscribersPage() {
         // Activate
         res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/activate/${subscriberToToggle._id}`, {
          
-         withCredentials:true,
           headers:{
             "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
           }
@@ -128,7 +125,7 @@ export default function SubscribersPage() {
       } else {
         // Deactivate (unsubscribe)
         res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/${subscriberToToggle.email}`, {
-          withCredentials:true,
+         
           headers:{
             "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
           }

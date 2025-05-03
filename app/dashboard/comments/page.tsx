@@ -48,7 +48,7 @@ export default function BlogsPage() {
   const fetchBlogs = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -82,7 +82,7 @@ export default function BlogsPage() {
 
     try {
       const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${blogToDelete}`, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -114,7 +114,7 @@ export default function BlogsPage() {
 
     try {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${blogToPublish._id}`, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }

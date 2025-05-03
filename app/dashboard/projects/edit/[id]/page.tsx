@@ -68,7 +68,6 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
     const fetchProject = async () => {
       try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`, {
-          withCredentials:true,
           headers:{
             "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
           }
@@ -281,7 +280,6 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
-        withCredentials:true,
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -318,7 +316,6 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
-        withCredentials:true,
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -403,7 +400,6 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
 
     try {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`, formData, {
-        withCredentials:true,
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }

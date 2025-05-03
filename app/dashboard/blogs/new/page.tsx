@@ -65,7 +65,7 @@ export default function NewBlogPage() {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -123,7 +123,7 @@ export default function NewBlogPage() {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, formData, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }

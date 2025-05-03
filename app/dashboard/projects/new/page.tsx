@@ -232,7 +232,7 @@ export default function NewProjectPage() {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -269,7 +269,7 @@ export default function NewProjectPage() {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
@@ -354,7 +354,7 @@ export default function NewProjectPage() {
 
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, formData, {
-        withCredentials:true,
+        
         headers:{
           "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
         }
