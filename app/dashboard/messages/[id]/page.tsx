@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { Badge } from "@/components/ui/badge"
+import axios from "axios"
 
 interface MessageDetailPageProps {
   params: {
@@ -39,15 +40,15 @@ export default function MessageDetailPage({ params }: MessageDetailPageProps) {
 
   const fetchMessage = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/${params.id}`, {
-        credentials: "include",
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/${params.id}`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch message")
-      }
+      const {data }=  res
 
-      const data = await res.json()
       setMessage(data.data)
     } catch (error) {
       toast({
@@ -63,14 +64,14 @@ export default function MessageDetailPage({ params }: MessageDetailPageProps) {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/${params.id}`, {
-        method: "DELETE",
-        credentials: "include",
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/${params.id}`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to delete message")
-      }
+     
 
       toast({
         title: "Message Deleted",
@@ -91,14 +92,14 @@ export default function MessageDetailPage({ params }: MessageDetailPageProps) {
 
   const handleToggleRead = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/${params.id}/read`, {
-        method: "PUT",
-        credentials: "include",
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/${params.id}/read`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to update message")
-      }
+     
 
       toast({
         title: message.read ? "Marked as Unread" : "Marked as Read",

@@ -28,6 +28,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import axios from "axios"
 
 export default function BlogsPage() {
   const router = useRouter()
@@ -46,15 +47,14 @@ export default function BlogsPage() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
-        credentials: "include",
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch blogs")
-      }
-
-      const data = await res.json()
+      const {data }=  res
       setBlogs(data.data)
     } catch (error) {
       toast({
@@ -81,14 +81,14 @@ export default function BlogsPage() {
     if (!blogToDelete) return
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${blogToDelete}`, {
-        method: "DELETE",
-        credentials: "include",
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${blogToDelete}`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to delete blog")
-      }
+     
 
       toast({
         title: "Blog Deleted",
@@ -113,23 +113,17 @@ export default function BlogsPage() {
     if (!blogToPublish) return
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${blogToPublish._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          published: !blogToPublish.published,
-        }),
-        credentials: "include",
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${blogToPublish._id}`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
+       
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to update blog")
-      }
+      
 
-      const data = await res.json()
-
+      const data = await res.data
       toast({
         title: blogToPublish.published ? "Blog Unpublished" : "Blog Published",
         description: `The blog has been ${blogToPublish.published ? "unpublished" : "published"} successfully`,

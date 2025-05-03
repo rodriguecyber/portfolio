@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch"
 import { useToast } from "@/hooks/use-toast"
 import { Loader2, ArrowLeft, Plus, X, Upload } from "lucide-react"
 import BlogEditor from "@/components/blog-editor"
+import axios from "axios"
 
 interface EditBlogPageProps {
   params: {
@@ -39,15 +40,15 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${params.id}`, {
-          credentials: "include",
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${params.id}`, {
+          withCredentials:true,
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+          }
         })
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch blog")
-        }
+        const {data }=  res
 
-        const data = await res.json()
         setFormData({
           title: data.data.title,
           excerpt: data.data.excerpt,
@@ -105,17 +106,15 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
     setUploadingImage(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to upload image")
-      }
+      const {data }=  res
 
-      const data = await res.json()
       setFormData((prev) => ({ ...prev, image: data.url }))
 
       toast({
@@ -166,18 +165,14 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
     setLoading(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${params.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${params.id}`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to update blog")
-      }
+      const {data }=  res
 
       toast({
         title: "Blog Updated",

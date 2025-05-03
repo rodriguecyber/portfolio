@@ -15,6 +15,7 @@ import { Loader2, ArrowLeft, Plus, X, Upload, Trash2 } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BlogEditor from "@/components/blog-editor"
+import axios from "axios"
 
 interface EditProjectPageProps {
   params: {
@@ -66,15 +67,16 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`, {
-          credentials: "include",
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`, {
+          withCredentials:true,
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+          }
         })
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch project")
-        }
+       
 
-        const data = await res.json()
+        const {data }=  res
         setFormData({
           title: data.data.title,
           description: data.data.description,
@@ -278,17 +280,16 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
     setUploadingImage(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to upload image")
-      }
+     
 
-      const data = await res.json()
+      const {data }=  res
       setFormData((prev) => ({ ...prev, image: data.url }))
 
       toast({
@@ -316,17 +317,15 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
     setUploadingScreenshot(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to upload screenshot")
-      }
+      const {data }=  res
 
-      const data = await res.json()
       setFormData((prev) => ({ ...prev, screenshots: [...prev.screenshots, data.url] }))
 
       toast({
@@ -403,18 +402,15 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
     setLoading(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
+       
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to update project")
-      }
+     
 
       toast({
         title: "Project Updated",

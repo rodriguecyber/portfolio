@@ -28,6 +28,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import axios from "axios"
 
 export default function ProjectsPage() {
   const router = useRouter()
@@ -46,15 +47,16 @@ export default function ProjectsPage() {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
-        credentials: "include",
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
+        withCredentials:true,
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+          }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch projects")
-      }
+      
 
-      const data = await res.json()
+      const data = res
       setProjects(data.data)
     } catch (error) {
       toast({
@@ -81,14 +83,14 @@ export default function ProjectsPage() {
     if (!projectToDelete) return
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectToDelete}`, {
-        method: "DELETE",
-        credentials: "include",
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectToDelete}`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to delete project")
-      }
+     
 
       toast({
         title: "Project Deleted",
@@ -113,20 +115,18 @@ export default function ProjectsPage() {
     if (!projectToPublish) return
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectToPublish._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${projectToPublish._id}`,{
           published: !projectToPublish.published,
-        }),
-        credentials: "include",
+        }, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
+        
+       
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to update project")
-      }
+     
 
       toast({
         title: projectToPublish.published ? "Project Unpublished" : "Project Published",

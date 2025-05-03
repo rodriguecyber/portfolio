@@ -27,6 +27,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import axios from "axios"
 
 export default function SubscribersPage() {
   const { toast } = useToast()
@@ -45,15 +46,15 @@ export default function SubscribersPage() {
 
   const fetchSubscribers = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers`, {
-        credentials: "include",
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch subscribers")
-      }
+      const {data }=  res
 
-      const data = await res.json()
       setSubscribers(data.data)
     } catch (error) {
       toast({
@@ -80,14 +81,14 @@ export default function SubscribersPage() {
     if (!subscriberToDelete) return
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/id/${subscriberToDelete}`, {
-        method: "DELETE",
-        credentials: "include",
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/id/${subscriberToDelete}`, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to delete subscriber")
-      }
+    
 
       toast({
         title: "Subscriber Deleted",
@@ -117,21 +118,23 @@ export default function SubscribersPage() {
 
       if (!subscriberToToggle.active) {
         // Activate
-        res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/activate/${subscriberToToggle._id}`, {
-          method: "PUT",
-          credentials: "include",
+        res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/activate/${subscriberToToggle._id}`, {
+         
+         withCredentials:true,
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+          }
         })
       } else {
         // Deactivate (unsubscribe)
-        res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/${subscriberToToggle.email}`, {
-          method: "DELETE",
-          credentials: "include",
+        res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/subscribers/${subscriberToToggle.email}`, {
+          withCredentials:true,
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+          }
         })
       }
 
-      if (!res.ok) {
-        throw new Error(`Failed to ${subscriberToToggle.active ? "deactivate" : "activate"} subscriber`)
-      }
 
       toast({
         title: subscriberToToggle.active ? "Subscriber Deactivated" : "Subscriber Activated",

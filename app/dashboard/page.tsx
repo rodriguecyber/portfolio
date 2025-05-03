@@ -21,6 +21,9 @@ export default function DashboardPage() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/stats`,
           {
         withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
 
           }
         )

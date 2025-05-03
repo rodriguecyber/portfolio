@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch"
 import { useToast } from "@/hooks/use-toast"
 import { Loader2, ArrowLeft, Plus, X, Upload } from "lucide-react"
 import BlogEditor from "@/components/blog-editor"
+import axios from "axios"
 
 export default function NewBlogPage() {
   const router = useRouter()
@@ -63,17 +64,14 @@ export default function NewBlogPage() {
     setUploadingImage(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to upload image")
-      }
-
-      const data = await res.json()
+      const {data }=  res
       setFormData((prev) => ({ ...prev, image: data.url }))
 
       toast({
@@ -124,18 +122,14 @@ export default function NewBlogPage() {
     setLoading(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include",
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, formData, {
+        withCredentials:true,
+        headers:{
+          "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+        }
       })
 
-      if (!res.ok) {
-        throw new Error("Failed to create blog")
-      }
+      const {data }=  res
 
       toast({
         title: "Blog Created",
