@@ -56,7 +56,7 @@ export default function ProjectsPage() {
 
       
 
-      const data = res
+      const data = res.data
       setProjects(data.data)
     } catch (error) {
       toast({
@@ -98,7 +98,7 @@ export default function ProjectsPage() {
       })
 
       // Remove from state
-      setProjects(projects.filter((project) => project._id !== projectToDelete))
+      setProjects(projects?.filter((project) => project._id !== projectToDelete))
     } catch (error) {
       toast({
         title: "Error",
