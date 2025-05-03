@@ -27,7 +27,9 @@ export default function DashboardLayout({
       try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
           withCredentials:true,
-
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem("rod-token")}`
+          }
         })
 
         const {data }=  res

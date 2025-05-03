@@ -40,6 +40,7 @@ export default function LoginPage() {
           "Content-Type": "application/json",
         }
       })
+      localStorage.setItem("rod-token", res.data.token)
 
       toast({
         title: "Login Successful",
