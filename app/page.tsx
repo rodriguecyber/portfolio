@@ -85,13 +85,7 @@ const Home = () => {
     fetchData()
   }, [fetchData])
 
-  if (isLoading) {
-    return <div className="container py-12 text-center">Loading...</div>
-  }
 
-  if (error) {
-    return <div className="container py-12 text-center text-red-500">{error}</div>
-  }
 
   return (
     <div className="container py-12 space-y-16">
@@ -177,7 +171,15 @@ const Home = () => {
           </Button>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {isLoading && (
+            <div className="container py-12 text-center">Loading...</div>
+          )}
+
+          {error && (
+            <div className="container py-12 text-center text-red-500">{error}</div>
+          )}
+
+          {!isLoading && !error && projects.map((project) => (
             <Card key={project._id} className="overflow-hidden flex flex-col h-full">
               <div className="relative h-48">
                 <Image
