@@ -146,7 +146,7 @@ const Home = () => {
             "Testing and Integration",
             "Jest",
             "Mocha",
-            "Version controll",
+            "Cloud-Based IIS Deployment & Management (Azure/AWS)",
             "Project management",
             "Cypress",
             "Team Mangement"
