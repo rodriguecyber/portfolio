@@ -107,12 +107,132 @@ const Home = () => {
             <Button variant="outline" asChild>
               <Link href="/contact">Contact Me</Link>
             </Button>
+            <Button variant="secondary" asChild>
+              <Link href="https://drive.google.com/file/d/1y3sSvdShqhSbF3l_XdAI7i-D1EjSk2z9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download CV</Link>
+            </Button>
           </div>
         </div>
         <div className="flex-shrink-0">
           <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full overflow-hidden border-4 border-primary/20">
             <Image src="/profile.png" alt="Rwigara Rodrigue" fill className="object-cover" priority />
           </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold">Professional Experience</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">My journey in software development and design</p>
+        </div>
+        <div className="grid gap-6">
+          <Card className="border-primary/20 hover:border-primary/40 transition-colors">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-primary">Full Stack Engineer & Trainer</h3>
+                    <p className="text-muted-foreground">Future Focus Academy</p>
+                  </div>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">2024 - Present</Badge>
+                </div>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                  <li>Develop and maintain full-stack applications using modern technologies</li>
+                  <li>Train and mentor aspiring developers in web development technologies</li>
+                  <li>Design and implement curriculum for software development courses</li>
+                  <li>Conduct code reviews and provide technical guidance to students</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="border-primary/20 hover:border-primary/40 transition-colors">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-primary">Full Stack Engineer & Project Manager</h3>
+                    <p className="text-muted-foreground">Edgereach Tech</p>
+                  </div>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">2024 - 2025</Badge>
+                </div>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                  <li>Led development of enterprise-level applications using modern tech stack</li>
+                  <li>Managed project timelines, resources, and team coordination</li>
+                  <li>Implemented agile methodologies and best practices</li>
+                  <li>Oversaw project delivery and client communication</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold">Certifications</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">Professional certifications and achievements</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card className="border-primary/20 hover:border-primary/40 transition-colors">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-primary">Andela Technical Leadership Program</h3>
+                    <p className="text-muted-foreground">Andela</p>
+                  </div>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">2024</Badge>
+                </div>
+                <p className="text-muted-foreground">
+                    Andela technical leadership program focusing on software Engineering, system design, and technical and professional mentorship.
+                </p>
+                <Button variant="ghost" size="sm" asChild className="w-fit">
+                  <Link href="https://drive.google.com/file/d/1cFZaMkC7_Uio89w-Ol8mp8ve6vY0lPYz/view?usp=sharing" target="_blank" rel="noopener noreferrer">View Certificate</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-primary/20 hover:border-primary/40 transition-colors">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-primary">Data Structures & Algorithms</h3>
+                    <p className="text-muted-foreground">freeCodeCamp</p>
+                  </div>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">2024</Badge>
+                </div>
+                <p className="text-muted-foreground">
+                  Comprehensive certification in data structures, algorithms, and problem-solving techniques.
+                </p>
+                <Button variant="ghost" size="sm" asChild className="w-fit">
+                  <Link href="https://www.freecodecamp.org/certification/rwigararodrigue/javascript-algorithms-and-data-structures" target="_blank" rel="noopener noreferrer">View Certificate</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-primary/20 hover:border-primary/40 transition-colors">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-primary">DevOps Professional</h3>
+                    <p className="text-muted-foreground">Greet Learning</p>
+                  </div>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">2025</Badge>
+                </div>
+                <p className="text-muted-foreground">
+                  Professional certification in DevOps practices, tools, and methodologies for modern software development.
+                </p>
+                <Button variant="ghost" size="sm" asChild className="w-fit">
+                  <Link href="" target="_blank" rel="noopener noreferrer">View Certificate</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
